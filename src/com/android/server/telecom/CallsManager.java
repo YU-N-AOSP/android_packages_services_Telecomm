@@ -2243,6 +2243,16 @@ public class CallsManager extends Call.ListenerBase implements VideoProviderProx
         }
     }
 
+    void resetCdmaConnectionTime(Call call) {
+        call.setConnectTimeMillis(System.currentTimeMillis());
+        if (mCalls.contains(call)) {
+            for (CallsManagerListener listener : mListeners) {
+                listener.onCallStateChanged(call, CallState.ACTIVE, CallState.ACTIVE);
+            }
+            updateForegroundCall();
+        }
+    }
+
     /**
     * For some disconnected causes, we show a dialog when it's a mmi code or potential mmi code.
     *

@@ -790,6 +790,10 @@ public class Call implements CreateConnectionResponse {
         return mConnectTimeMillis;
     }
 
+    public void setConnectTimeMillis(long connectTimeMillis) {
+        mConnectTimeMillis = connectTimeMillis;
+    }
+
     int getConnectionCapabilities() {
         return mConnectionCapabilities;
     }
