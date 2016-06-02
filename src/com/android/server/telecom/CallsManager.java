@@ -769,8 +769,13 @@ public class CallsManager extends Call.ListenerBase implements VideoProviderProx
             markCallAsDisconnected(call, new DisconnectCause(DisconnectCause.CANCELED,
                     "No registered PhoneAccounts"));
             markCallAsRemoved(call);
-	} else (call.getTargetPhoneAccount() != null || !call.isEmergencyCall()) {
-                updateLchStatus(call.getTargetPhoneAccount().getId());
+        } else if (call.getTargetPhoneAccount() != null) {
+		if (call.isEmergencyCall()) {
+			// Bad
+		} else {
+			// Cool
+                	updateLchStatus(call.getTargetPhoneAccount().getId());
+		}
         }
     }
 
